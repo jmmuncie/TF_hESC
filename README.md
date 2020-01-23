@@ -5,7 +5,7 @@ Requirements:
 --------------
 1) Install Fiji: https://fiji.sc/ 
 2) Install PIV and FTTC plugins: https://sites.google.com/site/qingzongtseng/tfm
-3) Install Matlab
+3) Install Matlab: https://www.mathworks.com/products/matlab.html
 
 Usage:
 ---------
