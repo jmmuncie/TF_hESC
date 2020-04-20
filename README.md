@@ -3,9 +3,12 @@ This repository contains two scripts used for traction force analysis of human e
 
 Requirements:
 --------------
-1) Install Fiji: https://fiji.sc/ 
-2) Install PIV and FTTC plugins: https://sites.google.com/site/qingzongtseng/tfm
-3) Install Matlab R2018b or more recent: https://www.mathworks.com/products/matlab.html
+1) Download/install Fiji (ImageJ 1.52a or later runnning on Java 1.8.0_172 or later): https://fiji.sc/ 
+2) Install PIV and FTTC plugins: 
+      -Download PIV.jar and FTTC.jar files here: https://github.com/qztseng/imagej_plugins/tree/master/current  
+      -Detailed descriptions here: https://sites.google.com/site/qingzongtseng/tfm
+      -Place PIV.jar and FTTC.jar files in your FIJI/ImageJ "plugins" folder
+3) Install Matlab R2018b or later: https://www.mathworks.com/products/matlab.html
 
 Usage:
 ---------
