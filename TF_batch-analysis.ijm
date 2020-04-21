@@ -8,7 +8,7 @@ run("Close All");
 dirIn1 = getDirectory("Choose folder with stacks to process");
 dirOut1 = getDirectory("Choose the folder you want to save the processed stacks");
 list1 = getFileList(dirIn1);
-preface = getString("Base file name for saving processed stacks", "shape_processed");
+preface = getString("Base file name for saving processed stacks", "processed_");
 for (i=0; i<(list1.length); i = i+1){
 	open(dirIn1+list1[i]);
 	run("Linear Stack Alignment with SIFT", "initial_gaussian_blur=1.60 steps_per_scale_octave=3 minimum_image_size=64 maximum_image_size=1024 feature_descriptor_size=4 feature_descriptor_orientation_bins=8 closest/next_closest_ratio=0.92 maximal_alignment_error=25 inlier_ratio=0.05 expected_transformation=Rigid interpolate");
@@ -16,10 +16,11 @@ for (i=0; i<(list1.length); i = i+1){
 	Dialog.addNumber("Translate X",0);
 	Dialog.addNumber("Translate Y",0);
 	Dialog.addNumber("Image number",i+1);
-	Dialog.addNumber("Crop width", 3300);
-	Dialog.addNumber("Crop height", 3700);
-	Dialog.addNumber("Crop x coord", 360);
-	Dialog.addNumber("Crop y coord", 372);
+	Dialog.addNumber("Crop width", 1800);
+	Dialog.addNumber("Crop height", 1800);
+	Dialog.addNumber("Crop x coord", 0);
+	Dialog.addNumber("Crop y coord", 0);
+	Dialog.addNumber("Rotate", 0);
 	Dialog.show();
 	transx = Dialog.getNumber();
 	transy = Dialog.getNumber();
@@ -28,11 +29,13 @@ for (i=0; i<(list1.length); i = i+1){
 	cropheight = Dialog.getNumber();
 	cropx = Dialog.getNumber();
 	cropy = Dialog.getNumber();
+	rotate = Dialog.getNumber();
 	run("Translate...", "x=transx y=transy interpolation=None stack");
 	run("Reverse");
+	run("Rotate... ", "angle=rotate grid=1 interpolation=Bilinear stack");
 	run("Specify...", "width=cropwidth height=cropheight x=cropx y=cropy slice=1");
 	run("Crop");
-	saveAs("Tiff", dirOut1 + preface+"_"+image);
+	saveAs("Tiff", dirOut1 + preface + image);
 	run("Close All");}
 
 //images have now been registered, translated so they are all aligned, and unstressed bead image is first - ready for PIV
