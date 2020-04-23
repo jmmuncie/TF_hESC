@@ -1,5 +1,8 @@
 # TF_hESC
-This repository contains two scripts used for traction force analysis of human embryonic stem cell colonies. The first is a Fiji macro script for large batch analysis of traction force microscopy data ('TF_batch-analysis.ijm'). The second is a Matlab script for displaying the resulting traction force microscopy data ('TF_display.m'). 
+This repository contains scripts used for traction force analysis of human embryonic stem cell colonies. 
+- 'TF_batch-analysis.ijm' is a Fiji macro script for large batch analysis of traction force microscopy data
+- 'TF_display.m' is a Matlab script for displaying the resulting traction force microscopy data 
+- 'shCDH1_TF_analysis.m' is a Matlab script that was used to determine the number of TF values above a certain threshold for individual TF maps
 
 Requirements:
 --------------
@@ -12,11 +15,11 @@ Requirements:
 
 Usage:
 ---------
-Prior to using these scripts you will need the raw data. This consists of paired images of fluorescent microspheres within hydrogels with cells adhered to the surface ("stressed images") and of the fluorescent microspheres from the same ROIs folllowing lysing of these cells ("unstressed images"), as well as brightfield images of the cells prior to lysing. Prior to using the Fiji 'TF_batch-analysis.ijm' macro, the stressed and unstressed images from each ROI should be combined into stacks with the stressed images first. If ultimately generating average plots, the user should have calculated alignment shifts and crop values based on BF images such that all colonies contributing to the average will overlap, these values should be saved for input while running the script. The ultimate FTTC.txt files generated from the Fiji macro will be the inputs for the Matlab 'TF_display.m' script. 
+Prior to using these scripts you will need the raw data. This consists of paired images of fluorescent microspheres within hydrogels with cells adhered to the surface ("stressed images") and of the fluorescent microspheres from the same ROIs folllowing lysing of these cells ("unstressed images"), as well as brightfield images of the cells prior to lysing. Prior to using the Fiji 'TF_batch-analysis.ijm' macro, the stressed and unstressed images from each ROI should be combined into stacks with the stressed images first. If ultimately generating average plots, the user should have calculated alignment shifts and crop values based on BF images such that all colonies contributing to the average will overlap, these values should be saved for input while running the script. The ultimate FTTC.txt files generated from the Fiji macro will be the inputs for the Matlab 'TF_display.m' and 'shCDH1_TF_analysis.m' scripts. 
 
 Sample Workflow:
 ------------------
-All files referenced in this sample workflow are contained in the 'sample files' subfolder of this repository. Steps 1-4 provide an example for working with 'TF_batch-analysis.ijm'. Steps 5-8 provide an example for working with 'TF_display.m'. 
+All files referenced in this sample workflow are contained in the 'sample files' subfolder of this repository. Steps 1-4 provide an example for working with 'TF_batch-analysis.ijm'. Steps 5-8 provide an example for working with 'TF_display.m'. Steps 9-12 provide an example for working with 'shCDH1_TF_analysis.m'.
 
 1) Download 'pm001_stressed.tif' and 'pm001_unstressed.tif'. Using Fiji, create a stack consisting of 'pm001_stressed.tif' followed by 'pm001_unstressed.tif'. Confirm that the resulting stack matches 'pm001.tif'. 
       - 'pm001_brightfield.tif' is a brightfield image of an hESC colony for which we will measure traction forces
@@ -47,11 +50,14 @@ All files referenced in this sample workflow are contained in the 'sample files'
       - NOTE: The FTTC data contains five columns of information. Columns 1 and 2 are the X and Y coordinates of each data point in the traction force plot. Columns 3 and 4 are the X and Y components of the traction vector at each coordinate. Column 5 is the magnitude (sqrt(x^2+y^2)) of the traction vector at each coordinate. If attempting to generate average plots of traction force data, all plots must have the same dimensions. The user can then average the X and Y traction components at each coordinate across all the traction maps to be averaged.
       - For example: to compute the X vector components of the average traction plot, copy Column 3 from each of the individual plots you want to average into the first tab of a new spreadsheet. In this spreadsheet, each column represents the X vector components from an individual plot and each row represents the values at a single coordinate across all plots. Thus, average across each row to get the average X vector component for each coordinate. Repeat this process in a second tab to calculate the average Y vector component at each coordinate. Then, in a third tab, create the average vector plot. Columns 1 and 2 will be the X and Y coordinates that are the same in every indidividual traction map, and can be copied and pasted into this tab. Columns 3 and 4 will be the average X and Y vector components you calculated. Column 5 will be the magnitude of the average traction vectors - for each row compute column5 = sqrt(column3^2+column4^2). Save this third tab as a .txt file and plot it as you would any of the individual traction force plots. 
       - An example of this average traction force spreadsheet containing data from 20 individual plots, each with XxY = 110x110 is given in 'average_tractions.xlsx'
-5) Download 'TF_display.m'. Rename 'Traction_cPIV_processed_pm001.txt' to 'FTTC.txt' and save it in the same folder as 'TF_display.m'. 
+5) Download 'TF_display.m'. Duplicate 'Traction_cPIV_processed_pm001.txt', rename the duplicated file 'FTTC.txt', and save it in the same folder as 'TF_display.m'. 
 6) Open 'TF_display.m' in Matlab. For this example, change the "X" and "Y" values in line 15 to "110" and "110". 
 7) Run the script. The plot should display in a new Matlab window. 
 8) If you change the colormap to "jet", set the max colormap value to "80", and set the PlotBoxAspectRatio to "1,1,1", the resulting figure should match 'pm001_FTTC_plot.tif' 
-
+9) Download 'shCDH1_TF_analysis.m'. Duplicate the five files: 'Traction_cPIV_processed_pm001.txt' - 'Traction_cPIV_processed_pm005.txt' into a new folder and save 'shCDH1_TF_analysis.m' in this folder.
+10) Open 'shCDH1_TF_analysis.m' in Matlab. Change the X/Y values of "126" and "126" in line 29 to "110" and "110". For this example we will not be masking, so use the "%" character to commment-out line 31, change the variable to be plotted in line 32 to "raw", and the variable to be sum(sum()) in line 34 to "raw". 
+11) Run the script. The 'Traction_cPIV_processed_pm001-5.txt' data will be plotted as matlab figs and saved. The variable "output" will be created and each row (1-5) will contain a value that corresponds to the number of TF values >  21 for each of the corresponding input Traction files (001-005). 
+12) Confirm that the values in output are: [1594; 1163; 1042; 1274; 931]
 
 Contact and Help:
 ------------------
