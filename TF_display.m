@@ -15,5 +15,5 @@ array = reshape(mag, [X Y]);
 %transpose the array to get the correct orientation relative to the original data 
 plot = array.';
 
-%display using imagesc. Use Matlab help to adjust colormap, scaling, etc.
-imagesc(plot);
+%display using imshow. Use Matlab help to adjust colormap, scaling, etc.
+imshow(plot, 'Colormap', jet, 'DisplayRange', [0 80], 'InitialMagnification', 'fit');
