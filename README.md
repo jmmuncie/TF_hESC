@@ -53,7 +53,7 @@ All files referenced in this sample workflow are contained in the 'sample files'
 5) Download 'TF_display.m'. Duplicate 'Traction_cPIV_processed_pm001.txt', rename the duplicated file 'FTTC.txt', and save it in the same folder as 'TF_display.m'. 
 6) Open 'TF_display.m' in Matlab. For this example, change the "X" and "Y" values in line 15 to "110" and "110". 
 7) Run the script. The plot should display in a new Matlab window. 
-8) If you change the colormap to "jet", set the max colormap value to "80", and set the PlotBoxAspectRatio to "1,1,1", the resulting figure should match 'pm001_FTTC_plot.tif' 
+8) Confirm that the resulting figure matches sample file 'pm001_FTTC_plot.tif' 
 9) Download 'shCDH1_TF_analysis.m'. Duplicate the five files: 'Traction_cPIV_processed_pm001.txt' - 'Traction_cPIV_processed_pm005.txt' into a new folder and save 'shCDH1_TF_analysis.m' in this folder.
 10) Open 'shCDH1_TF_analysis.m' in Matlab. Change the X/Y values of "126" and "126" in line 29 to "110" and "110". For this example we will not be masking, so use the "%" character to commment-out line 31, change the variable to be plotted in line 32 to "raw", and the variable to be sum(sum()) in line 34 to "raw". 
 11) Run the script. The 'Traction_cPIV_processed_pm001-5.txt' data will be plotted as matlab figs and saved. The variable "output" will be created and each row (1-5) will contain a value that corresponds to the number of TF values >  21 for each of the corresponding input Traction files (001-005). 
