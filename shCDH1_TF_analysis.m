@@ -3,7 +3,7 @@
 
 %This was specifically used in JMM et al. 2020 to compare the effect of
 %shCDH1 KD on traction forces. Using the avg map of TF for shCDH1 control,
-%we determined the 98 percentile of TF values = 21 Pa, and confirmed that
+%we determined the 95 percentile of TF values corresponding to colony area = 21 Pa, and confirmed that
 %thresholding at this value appropriately masks the corners. Thus, we used
 %this program to iterate through all control and KD maps and determine the
 %number of pixels, later converted to area, that demonstrate greater than
