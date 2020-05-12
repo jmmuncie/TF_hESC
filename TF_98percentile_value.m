@@ -1,4 +1,4 @@
-%This script is used to open multiple TF data plots and determine the 95th
+%This script is used to open multiple TF data plots and determine the 98th
 %percentile value for each map
 
 %This was specifically used in JMM et al. 2020 to compare the effect of
@@ -12,7 +12,7 @@
 files = dir('*.txt');
 numfiles = length(files);
 output = zeros(numfiles,1);
-%need to have inferno colormap function in matlab path
+%if plotting, need to have inferno colormap function in matlab path
 %https://www.mathworks.com/matlabcentral/fileexchange/51986-perceptually-uniform-colormaps
 %Ander Biguri (2020). Perceptually uniform colormaps (https://www.mathworks.com/matlabcentral/fileexchange/51986-perceptually-uniform-colormaps), MATLAB Central File Exchange. Retrieved April 24, 2020.
 inferno = inferno();
@@ -34,6 +34,7 @@ for k = 1:numfiles
     plot = reshape(mag, [126 126]);
     raw = plot.';
     masked = raw.*mask;
+    %next two lines can be used to display and save images of each map opened and analyzed
     %imshow(masked, 'DisplayRange', [0 50], 'Colormap', inferno, 'InitialMagnification', 'fit');
     %saveas(gcf,['TFplot_shCDH1_kd_n' num2str(k)], 'fig');
     output(k,1) = prctile(masked,98,'all');
