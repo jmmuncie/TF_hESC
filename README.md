@@ -56,7 +56,7 @@ All files referenced in this sample workflow are contained in the 'sample files'
 8) Confirm that the resulting figure matches sample file 'pm001_FTTC_plot.tif' 
 9) Download 'TF_98percentile_value.m'. Duplicate the five files: 'Traction_cPIV_processed_pm001.txt' - 'Traction_cPIV_processed_pm005.txt' into a new folder and save 'TF_98percentile_value.m' in this folder.
 10) Open 'TF_98percentile_value.m' in Matlab. Change the X/Y values of "126" and "126" in line 34 to "110" and "110". For this example we will not be masking, so use the "%" character to commment-out line 36, change the variable to be plotted in line 38 from "masked" to "raw", and the variable for which the 98th percentile value will be determined in line 40 from "masked" to "raw". 
-11) Run the script. The 'Traction_cPIV_processed_pm001-5.txt' data will be plotted as matlab figs and saved. The variable "output" will be created and each row (1-5) will contain a value that corresponds to the 98th percentile traction stress values (in Pascals) for each of the corresponding input traction files (001-005). 
+11) Run the script. The 'Traction_cPIV_processed_pm001-5.txt' data will be plotted as matlab figs and saved. The variable "output" will be created and each row (1-5) will contain a value that corresponds to the 98th percentile traction stress value (in Pascals) for the corresponding input traction file (001-005). 
 12) Confirm that the values in output are: [52.3; 47.4; 34.7; 47.5; 38.5]
 
 Contact and Help:
