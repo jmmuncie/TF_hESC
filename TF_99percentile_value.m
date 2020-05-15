@@ -1,11 +1,11 @@
-%This script is used to open multiple TF data plots and determine the 98th
+%This script is used to open multiple TF data plots and determine the 99th
 %percentile value for each map
 
 %This was specifically used in JMM et al. 2020 to compare the effect of
-%shCDH1 KD on traction forces. We quantify the 98th percentile value in
+%shCDH1 KD on traction forces. We quantify the 99th percentile value in
 %control and KD colonies to measure how reduction of CDH1 abrogates the
 %ability to generate high traction stresses. The output is a vector where
-%each value corresponds to the Pa measurement of the 98th percentile for
+%each value corresponds to the Pa measurement of the 99th percentile for
 %the corresponding map
 
 %count and import files
@@ -37,7 +37,7 @@ for k = 1:numfiles
     %next two lines can be used to display and save images of each map opened and analyzed
     %imshow(masked, 'DisplayRange', [0 50], 'Colormap', inferno, 'InitialMagnification', 'fit');
     %saveas(gcf,['TFplot_shCDH1_kd_n' num2str(k)], 'fig');
-    output(k,1) = prctile(masked,98,'all');
+    output(k,1) = prctile(masked,99,'all');
 end
     
 
